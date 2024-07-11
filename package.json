@@ -17,10 +17,11 @@
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.32.0",
     "emoji-picker-react": "^4.9.2",
+    "framer-motion": "^11.3.2",
     "lucide-react": "^0.371.0",
     "moment": "^2.30.1",
     "next": "14.2.2",
@@ -29,7 +30,7 @@
     "react-dom": "^18",
     "recharts": "^2.12.5",
     "sonner": "^1.4.41",
-    "tailwind-merge": "^2.2.2",
+    "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
