@@ -1,11 +1,11 @@
 import React from "react";
-import BudgetList from "./_components/BudgetList";
+import IncomeList from "./_components/IncomeList";
 
 function Income() {
   return (
     <div className="p-10">
-      <h2 className="font-bold text-3xl">My Incomes</h2>
-      <BudgetList />
+      <h2 className="font-bold text-3xl">My Income Streams</h2>
+      <IncomeList />
     </div>
   );
 }

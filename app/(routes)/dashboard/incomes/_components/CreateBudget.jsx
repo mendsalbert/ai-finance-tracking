@@ -18,7 +18,7 @@ import { Budgets } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
 
-function CreateBudget({ refreshData }) {
+function CreateIncomes({ refreshData }) {
   const [emojiIcon, setEmojiIcon] = useState("😀");
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
 
@@ -30,7 +30,7 @@ function CreateBudget({ refreshData }) {
   /**
    * Used to Create New Budget
    */
-  const onCreateBudget = async () => {
+  const onCreateIncomes = async () => {
     const result = await db
       .insert(Budgets)
       .values({
@@ -56,12 +56,12 @@ function CreateBudget({ refreshData }) {
             cursor-pointer hover:shadow-md"
           >
             <h2 className="text-3xl">+</h2>
-            <h2>Create New Budget</h2>
+            <h2>Create New Income Source</h2>
           </div>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Create New Budget</DialogTitle>
+            <DialogTitle>Create New Income Source</DialogTitle>
             <DialogDescription>
               <div className="mt-5">
                 <Button
@@ -102,7 +102,7 @@ function CreateBudget({ refreshData }) {
             <DialogClose asChild>
               <Button
                 disabled={!(name && amount)}
-                onClick={() => onCreateBudget()}
+                onClick={() => onCreateIncomes()}
                 className="mt-5 w-full rounded-full"
               >
                 Create Budget
@@ -115,4 +115,4 @@ function CreateBudget({ refreshData }) {
   );
 }
 
-export default CreateBudget;
+export default CreateIncomes;
