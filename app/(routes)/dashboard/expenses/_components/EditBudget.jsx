@@ -106,7 +106,7 @@ function EditBudget({ budgetInfo, refreshData }) {
               <Button
                 disabled={!(name && amount)}
                 onClick={() => onUpdateBudget()}
-                className="mt-5 w-full"
+                className="mt-5 w-full rounded-full"
               >
                 Update Budget
               </Button>
