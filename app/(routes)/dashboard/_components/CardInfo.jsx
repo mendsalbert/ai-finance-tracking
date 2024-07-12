@@ -1,7 +1,14 @@
-import { PiggyBank, ReceiptText, Wallet, Sparkles } from "lucide-react";
+import {
+  PiggyBank,
+  ReceiptText,
+  Wallet,
+  Sparkles,
+  CoinsIcon,
+  CircleDollarSign,
+} from "lucide-react";
 import React, { useEffect, useState } from "react";
 
-function CardInfo({ budgetList }) {
+function CardInfo({ budgetList, incomeList }) {
   const [totalBudget, setTotalBudget] = useState(0);
   const [totalSpend, setTotalSpend] = useState(0);
 
@@ -70,6 +77,13 @@ function CardInfo({ budgetList }) {
                 <h2 className="font-bold text-2xl">{budgetList?.length}</h2>
               </div>
               <Wallet className="bg-blue-800 p-3 h-12 w-12 rounded-full text-white" />
+            </div>
+            <div className="p-7 border rounded-2xl flex items-center justify-between">
+              <div>
+                <h2 className="text-sm">No. Of Income Streams</h2>
+                <h2 className="font-bold text-2xl">{incomeList?.length}</h2>
+              </div>
+              <CircleDollarSign className="bg-blue-800 p-3 h-12 w-12 rounded-full text-white" />
             </div>
           </div>
         </div>
