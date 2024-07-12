@@ -32,7 +32,6 @@ function SideNav() {
       icon: PiggyBank,
       path: "/dashboard/budgets",
     },
-
     {
       id: 3,
       name: "Expenses",
