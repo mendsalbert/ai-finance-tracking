@@ -81,14 +81,14 @@ function CreateIncomes({ refreshData }) {
                   />
                 </div>
                 <div className="mt-2">
-                  <h2 className="text-black font-medium my-1">Budget Name</h2>
+                  <h2 className="text-black font-medium my-1">Source Name</h2>
                   <Input
-                    placeholder="e.g. Home Decor"
+                    placeholder="e.g. Youtube"
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 <div className="mt-2">
-                  <h2 className="text-black font-medium my-1">Budget Amount</h2>
+                  <h2 className="text-black font-medium my-1">Montly Amount</h2>
                   <Input
                     type="number"
                     placeholder="e.g. 5000$"
@@ -105,7 +105,7 @@ function CreateIncomes({ refreshData }) {
                 onClick={() => onCreateIncomes()}
                 className="mt-5 w-full rounded-full"
               >
-                Create Budget
+                Create Income Source
               </Button>
             </DialogClose>
           </DialogFooter>

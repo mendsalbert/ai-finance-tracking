@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import CreateBudget from "./CreateBudget";
+import CreateIncomes from "./CreateIncomes";
 import { db } from "@/utils/dbConfig";
 import { desc, eq, getTableColumns, sql } from "drizzle-orm";
 import { Budgets, Expenses } from "@/utils/schema";
@@ -35,7 +35,7 @@ function IncomeList() {
         className="grid grid-cols-1
         md:grid-cols-2 lg:grid-cols-3 gap-5"
       >
-        <CreateBudget refreshData={() => getIncomelist()} />
+        <CreateIncomes refreshData={() => getIncomelist()} />
         {/* {incomelist?.length > 0
           ? incomelist.map((budget, index) => (
               <BudgetItem budget={budget} key={index} />
