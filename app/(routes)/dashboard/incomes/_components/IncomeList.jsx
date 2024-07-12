@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import CreateIncomes from "./CreateIncomes";
 import { db } from "@/utils/dbConfig";
 import { desc, eq, getTableColumns, sql } from "drizzle-orm";
-import { Budgets, Expenses } from "@/utils/schema";
+import { Incomes, Expenses } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
-import BudgetItem from "./BudgetItem";
+import IncomeItem from "./IncomeItem";
 
 function IncomeList() {
   const [incomelist, setIncomelist] = useState([]);
@@ -17,15 +17,15 @@ function IncomeList() {
   const getIncomelist = async () => {
     const result = await db
       .select({
-        ...getTableColumns(Budgets),
+        ...getTableColumns(Incomes),
         totalSpend: sql`sum(${Expenses.amount})`.mapWith(Number),
         totalItem: sql`count(${Expenses.id})`.mapWith(Number),
       })
-      .from(Budgets)
-      .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
-      .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress))
-      .groupBy(Budgets.id)
-      .orderBy(desc(Budgets.id));
+      .from(Incomes)
+      .leftJoin(Expenses, eq(Incomes.id, Expenses.budgetId))
+      .where(eq(Incomes.createdBy, user?.primaryEmailAddress?.emailAddress))
+      .groupBy(Incomes.id)
+      .orderBy(desc(Incomes.id));
     setIncomelist(result);
   };
 
@@ -36,9 +36,9 @@ function IncomeList() {
         md:grid-cols-2 lg:grid-cols-3 gap-5"
       >
         <CreateIncomes refreshData={() => getIncomelist()} />
-        {/* {incomelist?.length > 0
+        {incomelist?.length > 0
           ? incomelist.map((budget, index) => (
-              <BudgetItem budget={budget} key={index} />
+              <IncomeItem budget={budget} key={index} />
             ))
           : [1, 2, 3, 4, 5].map((item, index) => (
               <div
@@ -46,7 +46,7 @@ function IncomeList() {
                 className="w-full bg-slate-200 rounded-lg
         h-[150px] animate-pulse"
               ></div>
-            ))} */}
+            ))}
       </div>
     </div>
   );

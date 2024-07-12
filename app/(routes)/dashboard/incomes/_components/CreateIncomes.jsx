@@ -14,7 +14,7 @@ import EmojiPicker from "emoji-picker-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { db } from "@/utils/dbConfig";
-import { Budgets } from "@/utils/schema";
+import { Incomes } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
 
@@ -32,18 +32,18 @@ function CreateIncomes({ refreshData }) {
    */
   const onCreateIncomes = async () => {
     const result = await db
-      .insert(Budgets)
+      .insert(Incomes)
       .values({
         name: name,
         amount: amount,
         createdBy: user?.primaryEmailAddress?.emailAddress,
         icon: emojiIcon,
       })
-      .returning({ insertedId: Budgets.id });
+      .returning({ insertedId: Incomes.id });
 
     if (result) {
       refreshData();
-      toast("New Budget Created!");
+      toast("New Income Source Created!");
     }
   };
   return (
