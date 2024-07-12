@@ -80,7 +80,7 @@ function Dashboard() {
             : [1, 2, 3, 4].map((item, index) => (
                 <div
                   className="h-[180xp] w-full
-                 bg-slate-200 rounded-lg animate-pulse"
+                 bg-slate-200 rounded-2xl animate-pulse"
                 ></div>
               ))}
         </div>
