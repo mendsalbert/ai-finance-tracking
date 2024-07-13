@@ -53,7 +53,6 @@ function Dashboard() {
         .from(Incomes)
         .groupBy(Incomes.id); // Assuming you want to group by ID or any other relevant column
 
-      console.log(result);
       setIncomeList(result);
     } catch (error) {
       console.error("Error fetching income list:", error);

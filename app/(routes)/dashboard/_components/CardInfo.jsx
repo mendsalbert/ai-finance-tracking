@@ -1,3 +1,4 @@
+import formatNumber from "@/utils";
 import {
   PiggyBank,
   ReceiptText,
@@ -15,7 +16,7 @@ function CardInfo({ budgetList, incomeList }) {
 
   useEffect(() => {
     budgetList && CalculateCardInfo();
-  }, [budgetList]);
+  }, [budgetList, incomeList]);
   const CalculateCardInfo = () => {
     console.log(budgetList);
     let totalBudget_ = 0;
@@ -35,6 +36,7 @@ function CardInfo({ budgetList, incomeList }) {
     setTotalBudget(totalBudget_);
     setTotalSpend(totalSpend_);
   };
+
   return (
     <div>
       {budgetList?.length > 0 ? (
@@ -66,14 +68,18 @@ function CardInfo({ budgetList, incomeList }) {
             <div className="p-7 border rounded-2xl flex items-center justify-between">
               <div>
                 <h2 className="text-sm">Total Budget</h2>
-                <h2 className="font-bold text-2xl">${totalBudget}</h2>
+                <h2 className="font-bold text-2xl">
+                  ${formatNumber(totalBudget)}
+                </h2>
               </div>
               <PiggyBank className="bg-blue-800 p-3 h-12 w-12 rounded-full text-white" />
             </div>
             <div className="p-7 border rounded-2xl flex items-center justify-between">
               <div>
                 <h2 className="text-sm">Total Spend</h2>
-                <h2 className="font-bold text-2xl">${totalSpend}</h2>
+                <h2 className="font-bold text-2xl">
+                  ${formatNumber(totalSpend)}
+                </h2>
               </div>
               <ReceiptText className="bg-blue-800 p-3 h-12 w-12 rounded-full text-white" />
             </div>
@@ -86,8 +92,10 @@ function CardInfo({ budgetList, incomeList }) {
             </div>
             <div className="p-7 border rounded-2xl flex items-center justify-between">
               <div>
-                <h2 className="text-sm">No. of Income Streams</h2>
-                <h2 className="font-bold text-2xl">${totalIncome}</h2>
+                <h2 className="text-sm">Sum of Income Streams</h2>
+                <h2 className="font-bold text-2xl">
+                  ${formatNumber(totalIncome)}
+                </h2>
               </div>
               <CircleDollarSign className="bg-blue-800 p-3 h-12 w-12 rounded-full text-white" />
             </div>
