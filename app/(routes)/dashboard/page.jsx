@@ -42,14 +42,22 @@ function Dashboard() {
    * Get Income stream list
    */
   const getIncomeList = async () => {
-    const result = await db
-      .select({
-        ...getTableColumns(Incomes),
-      })
-      .from(Incomes);
+    try {
+      const result = await db
+        .select({
+          ...getTableColumns(Incomes),
+          totalAmount: sql`SUM(CAST(${Incomes.amount} AS NUMERIC))`.mapWith(
+            Number
+          ),
+        })
+        .from(Incomes)
+        .groupBy(Incomes.id); // Assuming you want to group by ID or any other relevant column
 
-    console.log(result);
-    setIncomeList(result);
+      console.log(result);
+      setIncomeList(result);
+    } catch (error) {
+      console.error("Error fetching income list:", error);
+    }
   };
 
   /**

@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 function CardInfo({ budgetList, incomeList }) {
   const [totalBudget, setTotalBudget] = useState(0);
   const [totalSpend, setTotalSpend] = useState(0);
+  const [totalIncome, setTotalIncome] = useState(0);
 
   useEffect(() => {
     budgetList && CalculateCardInfo();
@@ -19,15 +20,20 @@ function CardInfo({ budgetList, incomeList }) {
     console.log(budgetList);
     let totalBudget_ = 0;
     let totalSpend_ = 0;
+    let totalIncome_ = 0;
 
     budgetList.forEach((element) => {
       totalBudget_ = totalBudget_ + Number(element.amount);
       totalSpend_ = totalSpend_ + element.totalSpend;
     });
 
+    incomeList.forEach((element) => {
+      totalIncome_ = totalIncome_ + element.totalAmount;
+    });
+
+    setTotalIncome(totalIncome_);
     setTotalBudget(totalBudget_);
     setTotalSpend(totalSpend_);
-    console.log(totalBudget_, totalSpend_);
   };
   return (
     <div>
@@ -80,8 +86,8 @@ function CardInfo({ budgetList, incomeList }) {
             </div>
             <div className="p-7 border rounded-2xl flex items-center justify-between">
               <div>
-                <h2 className="text-sm">No. Of Income Streams</h2>
-                <h2 className="font-bold text-2xl">{incomeList?.length}</h2>
+                <h2 className="text-sm">No. of Income Streams</h2>
+                <h2 className="font-bold text-2xl">${totalIncome}</h2>
               </div>
               <CircleDollarSign className="bg-blue-800 p-3 h-12 w-12 rounded-full text-white" />
             </div>
