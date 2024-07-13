@@ -1,5 +1,5 @@
 {
-  "name": "expense-tracker",
+  "name": "ai-expense-advisor",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -26,6 +26,7 @@
     "moment": "^2.30.1",
     "next": "14.2.2",
     "next-themes": "^0.3.0",
+    "openai": "^4.52.7",
     "react": "^18",
     "react-dom": "^18",
     "recharts": "^2.12.5",

@@ -1,10 +1,10 @@
 import formatNumber from "@/utils";
+import getFinancialAdvice from "@/utils/getFinancialAdvice";
 import {
   PiggyBank,
   ReceiptText,
   Wallet,
   Sparkles,
-  CoinsIcon,
   CircleDollarSign,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -13,10 +13,29 @@ function CardInfo({ budgetList, incomeList }) {
   const [totalBudget, setTotalBudget] = useState(0);
   const [totalSpend, setTotalSpend] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
+  const [financialAdvice, setFinancialAdvice] = useState("");
 
   useEffect(() => {
-    budgetList && CalculateCardInfo();
+    if (budgetList.length > 0 || incomeList.length > 0) {
+      CalculateCardInfo();
+    }
   }, [budgetList, incomeList]);
+
+  useEffect(() => {
+    if (totalBudget > 0 || totalIncome > 0 || totalSpend > 0) {
+      const fetchFinancialAdvice = async () => {
+        const advice = await getFinancialAdvice(
+          totalBudget,
+          totalIncome,
+          totalSpend
+        );
+        setFinancialAdvice(advice);
+      };
+
+      fetchFinancialAdvice();
+    }
+  }, [totalBudget, totalIncome, totalSpend]);
+
   const CalculateCardInfo = () => {
     console.log(budgetList);
     let totalBudget_ = 0;
@@ -55,11 +74,7 @@ function CardInfo({ budgetList, incomeList }) {
                 />
               </div>
               <h2 className="font-light text-md">
-                {" "}
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim
-                quae sint, sequi hic nemo mollitia ea cum at laudantium tempore
-                dignissimos quas voluptate eligendi ipsa in inventore aspernatur
-                sapiente eius.
+                {financialAdvice || "Loading financial advice..."}
               </h2>
             </div>
           </div>
@@ -104,7 +119,10 @@ function CardInfo({ budgetList, incomeList }) {
       ) : (
         <div className="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {[1, 2, 3].map((item, index) => (
-            <div className="h-[110px] w-full bg-slate-200 animate-pulse rounded-lg"></div>
+            <div
+              className="h-[110px] w-full bg-slate-200 animate-pulse rounded-lg"
+              key={index}
+            ></div>
           ))}
         </div>
       )}
